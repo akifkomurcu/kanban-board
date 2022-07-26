@@ -1,9 +1,33 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
-  }
+  "kanbans":[
+    {
+        "daily":[
+          {
+            "id":"1",
+            "backlog":{
+              "id":"1",
+              "title":"Tten",
+              "content":"go to shopping and tten"
+            },
+            "todo":{
+              "id":"2",
+              "title":"Shopping",
+              "content":"go to shopping and buy some coffee"
+            },
+            "inprog":{
+              "id":"3",
+              "title":"Shopping",
+              "content":"go to shopping and buy some coffee"
+            },
+            "done":{
+              "id":"4",
+              "title":"Shopping",
+              "content":"go to shopping and buy some coffee"
+            }
+      
+          }
+        ]
+    }
+  ]
+  
+}
