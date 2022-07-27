@@ -7,5 +7,8 @@
     "start": "json-server --watch db.json --port 4000"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react-router-dom": "^6.3.0"
+  }
 }
