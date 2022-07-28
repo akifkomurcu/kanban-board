@@ -5,6 +5,7 @@ import { FetchAllKanbans } from "../../api";
 import { Link } from "react-router-dom";
 function Home() {
   const { isLoading, isError, data } = useQuery("allkanbans", FetchAllKanbans);
+
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -17,7 +18,7 @@ function Home() {
       <div className={style.board}>
         <div className={style.list}>
           {data.map((kanban, index) => (
-            <Link key={index} to={`/content/${kanban.id}`}>
+            <Link to={`/content/${kanban.id}`}>
               <div>{kanban.name}</div>
             </Link>
           ))}

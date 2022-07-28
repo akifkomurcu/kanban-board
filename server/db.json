@@ -2,143 +2,139 @@
   "myKanbans": [
     {
       "id": 1,
-      "name": "daily",
-      "user": "akif",
-      "backlog": [
+      "name": "birinci",
+      "cards": [
         {
           "id": 1,
-          "title": "test",
-          "content": "deneme"
+          "title": "backlog title",
+          "content": "backlog content",
+          "section": "backlog"
         },
         {
-          "id": "2",
-          "title": "test",
-          "content": "test"
-        }
-      ],
-      "todo": [
+          "id": 2,
+          "title": "todo title",
+          "content": "todo content",
+          "section": "todo"
+        },
         {
-          "id": "1",
-          "title": "module css",
-          "content": "Css modullerini yaz"
-        }
-      ],
-      "inprog": [
+          "id": 3,
+          "title": "inprogress title",
+          "content": "inprogress content",
+          "section": "inprogress"
+        },
         {
-          "id": "1",
-          "title": "React'e tasarımını geçir",
-          "content": "React'e tasarımını geçir"
-        }
-      ],
-      "done": [
+          "id": 4,
+          "title": "done title",
+          "content": "done content",
+          "section": "done"
+        },
         {
-          "id": "1",
-          "title": "CSS yaz",
-          "content": "Design'ı aktar"
-        }
+          "title": "mutation kaldırıldı",
+          "content": "yeni geldi",
+          "section": "backlog"
+        },
+        {
+          "id": ":r3:",
+          "title": "asdsa",
+          "content": "asdads",
+          "section": "backlog"
+        },
+        6,
+        {
+          "id": ":rd:",
+          "title": "xxxx",
+          "content": "xxxx",
+          "section": "backlog"
+        },
+        8,
+        {
+          "id": ":r3:",
+          "title": "zzz",
+          "content": "zzzzz",
+          "section": "backlog"
+        },
+        10,
+        {
+          "id": ":rf:",
+          "title": "todoya gelecek",
+          "content": "helooo!",
+          "section": "todo"
+        },
+        12
       ]
     },
     {
       "id": 2,
-      "name": "weekly",
-      "user": "akif",
-      "backlog": [
+      "name": "ikinci",
+      "cards": [
+        {
+          "id": 1,
+          "title": "backlog title",
+          "content": "backlog content",
+          "section": "backlog"
+        },
+        {
+          "id": 2,
+          "title": "todo title",
+          "content": "todo content",
+          "section": "todo"
+        },
         {
           "id": 3,
-          "title": "AAA",
-          "content": "Sürükle bırak olayını araştır"
-        }
-      ],
-      "todo": [
+          "title": "inprogress title",
+          "content": "inprogress content",
+          "section": "inprogress"
+        },
         {
-          "id": "1",
-          "title": "module css",
-          "content": "Css modullerini yaz"
-        }
-      ],
-      "inprog": [
-        {
-          "id": "1",
-          "title": "React'e tasarımını geçir",
-          "content": "React'e tasarımını geçir"
-        }
-      ],
-      "done": [
-        {
-          "id": "1",
-          "title": "CSS yaz",
-          "content": "Design'ı aktar"
+          "id": 4,
+          "title": "done title",
+          "content": "done content",
+          "section": "done"
         }
       ]
     },
     {
-      "name": "weekly",
-      "user": "akif",
-      "backlog": [
+      "id": 3,
+      "name": "üçüncü",
+      "cards": [
         {
-          "id": "1",
-          "title": "Drag&Drop",
-          "content": "Sürükle bırak olayını araştır"
-        }
-      ],
-      "todo": [
-        {
-          "id": "1",
-          "title": "module css",
-          "content": "Css modullerini yaz"
-        }
-      ],
-      "inprog": [
-        {
-          "id": "1",
-          "title": "React'e tasarımını geçir",
-          "content": "React'e tasarımını geçir"
-        }
-      ],
-      "done": [
-        {
-          "id": "1",
-          "title": "CSS yaz",
-          "content": "Design'ı aktar"
-        }
-      ],
-      "id": 3
-    },
-    {
-      "id": 4,
-      "name": "weekly",
-      "user": "akif",
-      "backlog": [
-        {
-          "id": 3,
-          "title": "AAA",
-          "content": "Sürükle bırak olayını araştır"
+          "id": 1,
+          "title": "backlog title",
+          "content": "backlog content",
+          "section": "backlog"
         },
         {
-          "title": "merhaba postman",
-          "content": "postmandan geldi"
-        }
-      ],
-      "todo": [
+          "id": 2,
+          "title": "todo title",
+          "content": "todo content",
+          "section": "todo"
+        },
         {
-          "id": "1",
-          "title": "module css",
-          "content": "Css modullerini yaz"
-        }
-      ],
-      "inprog": [
+          "id": 3,
+          "title": "inprogress title",
+          "content": "inprogress content",
+          "section": "inprogress"
+        },
         {
-          "id": "1",
-          "title": "React'e tasarımını geçir",
-          "content": "React'e tasarımını geçir"
-        }
-      ],
-      "done": [
+          "id": 4,
+          "title": "done title",
+          "content": "done content",
+          "section": "done"
+        },
         {
-          "id": "1",
-          "title": "CSS yaz",
-          "content": "Design'ı aktar"
-        }
+          "id": ":r3:",
+          "title": "done gidecek",
+          "content": "dasadsd",
+          "section": "done"
+        },
+        5,
+        {
+          "id": ":r3:",
+          "title": "asdas",
+          "content": "dasda",
+          "section": "done"
+        },
+        7
       ]
     }
   ]
