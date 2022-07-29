@@ -3,6 +3,7 @@ import style from "./style.module.css";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useParams } from "react-router-dom";
 import { AddKanbanCard } from "../../api";
+import { DragDropContext } from "react-beautiful-dnd";
 import {
   Modal,
   ModalOverlay,
@@ -21,6 +22,7 @@ function Section({ data }) {
   const NewID = uuid();
   const { id } = useParams();
   const [title, setTitle] = useState("");
+  const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
   const [parts, setParts] = useState([
     "Backlog",
@@ -30,8 +32,12 @@ function Section({ data }) {
   ]);
   const [section, setSection] = useState("");
 
-  const HandleSubmit = async () => {
+  const HandleSubmit = async (card) => {
     //yeni value'ları obje haline getirdim
+
+    if (card) {
+      console.log("card", card);
+    }
     const CardValues = data.cards.push({
       id: NewID,
       title: title,
@@ -43,6 +49,7 @@ function Section({ data }) {
       name: data.name,
       cards: [...data.cards, CardValues],
     };
+    console.log("handleDaki kart", card);
 
     onClose();
     setTitle("");
@@ -63,6 +70,25 @@ function Section({ data }) {
     document.location.reload(true);
   };
 
+  const dragStart = (e, cardID) => {
+    setDragging(cardID);
+    console.log("kaydırma başladı", cardID);
+  };
+  const dragKeeping = (e, dragging) => {
+    e.preventDefault();
+    console.log("üstüne geldi", dragging);
+  };
+  const dragDropped = async (e, part) => {
+    console.log("kaydırma bitti", dragging, part);
+    //kartı buldum
+    let Newcard = data.cards.find((card) => card.id === dragging);
+    //bölümünü değiştirdim
+    Newcard.section = part;
+
+    //pushladım
+    await AddKanbanCard(id, data);
+    document.location.reload(true);
+  };
   return (
     <>
       <Modal
@@ -97,7 +123,12 @@ function Section({ data }) {
         </ModalContent>
       </Modal>
       {parts.map((part, index) => (
-        <div key={index} className={style.backlog}>
+        <div
+          key={index}
+          className={style.backlog}
+          onDragOver={(e) => dragKeeping(e, dragging)}
+          onDrop={(e) => dragDropped(e, part)}
+        >
           <div className={style.heading}>
             {part}
             <button value={part} onClick={() => setSection(part)}>
@@ -107,7 +138,12 @@ function Section({ data }) {
           {data.cards.map(
             (card, index) =>
               card?.section === part && (
-                <div key={index} className={style.card}>
+                <div
+                  key={index}
+                  className={style.card}
+                  draggable
+                  onDragStart={(e) => dragStart(e, card.id)}
+                >
                   <div className={style.cardContent}>
                     <div className={style.title}>
                       {card.title}

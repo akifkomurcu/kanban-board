@@ -2,36 +2,7 @@
   "myKanbans": [
     {
       "name": "birinci",
-      "cards": [
-        1,
-        {
-          "id": "33b1d2e9-f6cc-42f4-a01a-0eed639fd17c",
-          "title": "asd",
-          "content": "asdasdsd",
-          "section": "Backlog"
-        },
-        {
-          "id": "ae57ecb2-8375-466d-aed3-ba682adb1b27",
-          "title": "asda",
-          "content": "dasd",
-          "section": "Inprogress"
-        },
-        {
-          "id": "dedf22f1-acbf-4827-9c72-2a6010e3b9a8",
-          "title": "asdasd",
-          "content": "asdad",
-          "section": "Done"
-        },
-        4,
-        6,
-        {
-          "id": "9627c922-463a-4470-a4fd-5d54ac70a84f",
-          "title": "akif",
-          "content": "123123",
-          "section": "To do"
-        },
-        7
-      ],
+      "cards": [],
       "id": 1
     }
   ]
