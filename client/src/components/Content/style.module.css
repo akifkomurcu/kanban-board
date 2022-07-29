@@ -58,48 +58,6 @@
 .backlog .card {
   margin-bottom: 13px;
 }
-.todo {
-  overflow-y: scroll;
-  text-align: left;
-  height: min-content;
-  max-height: 696px;
-  width: max-content;
-  background-color: #262626;
-  color: white;
-  border-radius: 16px;
-  padding: 24px;
-}
-.todo .card {
-  margin-bottom: 13px;
-}
-.inprogress {
-  overflow-y: scroll;
-  text-align: left;
-  height: min-content;
-  max-height: 696px;
-  width: max-content;
-  background-color: #262626;
-  color: white;
-  border-radius: 16px;
-  padding: 24px;
-}
-.inprogress .card {
-  margin-bottom: 13px;
-}
-.done {
-  overflow-y: scroll;
-  text-align: left;
-  height: min-content;
-  max-height: 696px;
-  width: max-content;
-  background-color: #262626;
-  color: white;
-  border-radius: 16px;
-  padding: 24px;
-}
-.done .card {
-  margin-bottom: 13px;
-}
 
 .card {
   width: 320px;

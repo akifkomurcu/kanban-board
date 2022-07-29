@@ -1,141 +1,38 @@
 {
   "myKanbans": [
     {
-      "id": 1,
       "name": "birinci",
       "cards": [
+        1,
         {
-          "id": 1,
-          "title": "backlog title",
-          "content": "backlog content",
-          "section": "backlog"
+          "id": "33b1d2e9-f6cc-42f4-a01a-0eed639fd17c",
+          "title": "asd",
+          "content": "asdasdsd",
+          "section": "Backlog"
         },
         {
-          "id": 2,
-          "title": "todo title",
-          "content": "todo content",
-          "section": "todo"
+          "id": "ae57ecb2-8375-466d-aed3-ba682adb1b27",
+          "title": "asda",
+          "content": "dasd",
+          "section": "Inprogress"
         },
         {
-          "id": 3,
-          "title": "inprogress title",
-          "content": "inprogress content",
-          "section": "inprogress"
+          "id": "dedf22f1-acbf-4827-9c72-2a6010e3b9a8",
+          "title": "asdasd",
+          "content": "asdad",
+          "section": "Done"
         },
-        {
-          "id": 4,
-          "title": "done title",
-          "content": "done content",
-          "section": "done"
-        },
-        {
-          "title": "mutation kaldırıldı",
-          "content": "yeni geldi",
-          "section": "backlog"
-        },
-        {
-          "id": ":r3:",
-          "title": "asdsa",
-          "content": "asdads",
-          "section": "backlog"
-        },
+        4,
         6,
         {
-          "id": ":rd:",
-          "title": "xxxx",
-          "content": "xxxx",
-          "section": "backlog"
-        },
-        8,
-        {
-          "id": ":r3:",
-          "title": "zzz",
-          "content": "zzzzz",
-          "section": "backlog"
-        },
-        10,
-        {
-          "id": ":rf:",
-          "title": "todoya gelecek",
-          "content": "helooo!",
-          "section": "todo"
-        },
-        12
-      ]
-    },
-    {
-      "id": 2,
-      "name": "ikinci",
-      "cards": [
-        {
-          "id": 1,
-          "title": "backlog title",
-          "content": "backlog content",
-          "section": "backlog"
-        },
-        {
-          "id": 2,
-          "title": "todo title",
-          "content": "todo content",
-          "section": "todo"
-        },
-        {
-          "id": 3,
-          "title": "inprogress title",
-          "content": "inprogress content",
-          "section": "inprogress"
-        },
-        {
-          "id": 4,
-          "title": "done title",
-          "content": "done content",
-          "section": "done"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "üçüncü",
-      "cards": [
-        {
-          "id": 1,
-          "title": "backlog title",
-          "content": "backlog content",
-          "section": "backlog"
-        },
-        {
-          "id": 2,
-          "title": "todo title",
-          "content": "todo content",
-          "section": "todo"
-        },
-        {
-          "id": 3,
-          "title": "inprogress title",
-          "content": "inprogress content",
-          "section": "inprogress"
-        },
-        {
-          "id": 4,
-          "title": "done title",
-          "content": "done content",
-          "section": "done"
-        },
-        {
-          "id": ":r3:",
-          "title": "done gidecek",
-          "content": "dasadsd",
-          "section": "done"
-        },
-        5,
-        {
-          "id": ":r3:",
-          "title": "asdas",
-          "content": "dasda",
-          "section": "done"
+          "id": "9627c922-463a-4470-a4fd-5d54ac70a84f",
+          "title": "akif",
+          "content": "123123",
+          "section": "To do"
         },
         7
-      ]
+      ],
+      "id": 1
     }
   ]
 }

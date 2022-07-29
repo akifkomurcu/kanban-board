@@ -1,12 +1,13 @@
-import { useState } from "react";
 import style from "./style.module.css";
 import { useQuery } from "react-query";
 import { FetchKanbanID } from "../../api";
 import Section from "../Section";
 import { useParams, Link } from "react-router-dom";
 import { useKanban } from "../Context/KanbanContext";
+
 function Content() {
   const { id } = useParams();
+
   const { isLoading, isError, data } = useQuery(["kanbanID", id], () =>
     FetchKanbanID(id)
   );

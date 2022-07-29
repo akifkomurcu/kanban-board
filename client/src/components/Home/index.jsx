@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import style from "./style.module.css";
 import { useQuery } from "react-query";
 import { FetchAllKanbans } from "../../api";
 import { Link } from "react-router-dom";
+
 function Home() {
   const { isLoading, isError, data } = useQuery("allkanbans", FetchAllKanbans);
 
@@ -18,7 +18,7 @@ function Home() {
       <div className={style.board}>
         <div className={style.list}>
           {data.map((kanban, index) => (
-            <Link to={`/content/${kanban.id}`}>
+            <Link key={index} to={`/content/${kanban.id}`}>
               <div>{kanban.name}</div>
             </Link>
           ))}
