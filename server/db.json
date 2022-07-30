@@ -2,7 +2,20 @@
   "myKanbans": [
     {
       "name": "birinci",
-      "cards": [],
+      "cards": [
+        {
+          "id": "a234c869-2222-4e49-925c-bdae0646f65b",
+          "title": "asd",
+          "content": "asdad",
+          "section": "Backlog"
+        },
+        {
+          "id": "d4258501-2353-4c4d-a7d5-911e90823537",
+          "title": "sdfsdf",
+          "content": "sdfsdsf",
+          "section": "Backlog"
+        }
+      ],
       "id": 1
     }
   ]

@@ -1,9 +1,8 @@
-import { useState, useId } from "react";
+import { useState } from "react";
 import style from "./style.module.css";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useParams } from "react-router-dom";
 import { AddKanbanCard } from "../../api";
-import { DragDropContext } from "react-beautiful-dnd";
 import {
   Modal,
   ModalOverlay,
@@ -24,20 +23,12 @@ function Section({ data }) {
   const [title, setTitle] = useState("");
   const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
-  const [parts, setParts] = useState([
-    "Backlog",
-    "To do",
-    "Inprogress",
-    "Done",
-  ]);
+  const [parts] = useState(["Backlog", "To do", "Inprogress", "Done"]);
   const [section, setSection] = useState("");
 
-  const HandleSubmit = async (card) => {
+  const HandleSubmit = async () => {
     //yeni value'ları obje haline getirdim
 
-    if (card) {
-      console.log("card", card);
-    }
     const CardValues = data.cards.push({
       id: NewID,
       title: title,
@@ -49,12 +40,11 @@ function Section({ data }) {
       name: data.name,
       cards: [...data.cards, CardValues],
     };
-    console.log("handleDaki kart", card);
 
     onClose();
     setTitle("");
     setContent("");
-    console.log(values);
+
     //db'ye data pushlama
     await AddKanbanCard(id, values);
   };
@@ -72,19 +62,20 @@ function Section({ data }) {
 
   const dragStart = (e, cardID) => {
     setDragging(cardID);
-    console.log("kaydırma başladı", cardID);
   };
   const dragKeeping = (e, dragging) => {
     e.preventDefault();
-    console.log("üstüne geldi", dragging);
   };
   const dragDropped = async (e, part) => {
-    console.log("kaydırma bitti", dragging, part);
+    if (part !== section) {
+      console.log("part", part, "section", section);
+    }
+
     //kartı buldum
     let Newcard = data.cards.find((card) => card.id === dragging);
     //bölümünü değiştirdim
-    Newcard.section = part;
 
+    Newcard.section = part;
     //pushladım
     await AddKanbanCard(id, data);
     document.location.reload(true);
@@ -125,15 +116,15 @@ function Section({ data }) {
       {parts.map((part, index) => (
         <div
           key={index}
-          className={style.backlog}
+          className={style.section}
           onDragOver={(e) => dragKeeping(e, dragging)}
           onDrop={(e) => dragDropped(e, part)}
         >
           <div className={style.heading}>
             {part}
-            <button value={part} onClick={() => setSection(part)}>
-              <AddIcon w={3} h={3} onClick={onOpen} />
-            </button>
+            <span value={part} onClick={() => setSection(part)}>
+              <AddIcon w={3} h={3} onClick={onOpen} cursor="pointer" />
+            </span>
           </div>
           {data.cards.map(
             (card, index) =>

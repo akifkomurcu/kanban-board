@@ -15,7 +15,3 @@ export const AddKanbanCard = async (id, values) => {
   );
   return data;
 };
-export const DeleteKanbanCard = async (id) => {
-  const { data } = await axios.delete(`http://localhost:4000/myKanbans/${id}`);
-  return data;
-};

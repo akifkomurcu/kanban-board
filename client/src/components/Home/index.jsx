@@ -19,7 +19,7 @@ function Home() {
         <div className={style.list}>
           {data.map((kanban, index) => (
             <Link key={index} to={`/content/${kanban.id}`}>
-              <div>{kanban.name}</div>
+              <div className={style.card}>{kanban.name}</div>
             </Link>
           ))}
         </div>
