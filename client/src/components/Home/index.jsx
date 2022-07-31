@@ -15,14 +15,25 @@ function Home() {
 
   return (
     <div className={style.main}>
-      <div className={style.board}>
-        <div className={style.list}>
-          {data.map((kanban, index) => (
-            <Link key={index} to={`/content/${kanban.id}`}>
-              <div className={style.card}>{kanban.name}</div>
-            </Link>
-          ))}
+      <div className={style.leftside}>
+        <div className={style.lastSaw}>
+          <h2>Last seen</h2>
+          <ul>
+            {data.map((kanban) => (
+              <li key={kanban.id}>
+                <Link to={`/content/${kanban.id}`}>{kanban.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
+      <div className={style.rightside}>
+        <h2>My Kanbans</h2>
+        {data.map((kanban, index) => (
+          <Link key={index} to={`/content/${kanban.id}`}>
+            <div className={style.card}>{kanban.name}</div>
+          </Link>
+        ))}
       </div>
     </div>
   );

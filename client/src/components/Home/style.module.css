@@ -14,32 +14,24 @@
   color: #ffffff;
 }
 .main {
-  font-family: "SF Pro Display", sans-serif;
-  background-color: black;
   width: 100%;
+
+  display: grid;
+  grid:
+    "leftside rightside" 1fr
+    / 1fr 1.5fr;
+  gap: 2px;
   height: 100vh;
-  text-align: center;
-  display: flex;
 }
-.board {
-  width: 90%;
-  margin: 0 auto;
-  background-color: black;
-  color: white;
+.leftside {
+  grid-area: leftside;
+  background-color: #262626;
 }
-.list {
-  width: 100%;
-  height: min-content;
-  display: flex;
-  justify-content: center;
-  text-align: center;
+.rightside {
+  grid-area: rightside;
+  background-color: #16184e;
 }
-.list div {
-  margin: 10px;
-}
-.list .card {
-  margin: 0 auto;
-}
+
 .section {
   overflow-y: scroll;
   text-align: left;
@@ -64,27 +56,8 @@
   padding: 24px;
   gap: 8px;
 }
-.heading {
-  font-family: "SF Pro Display", sans-serif;
-  font-weight: 700;
-  line-height: 44px;
-  letter-spacing: 0em;
-  text-align: left;
-  font-size: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.cardContent {
-  font-family: "SF Pro Text", sans-serif;
-  width: 100%;
-  height: auto;
-}
-
-/* responsive */
-
-@media (min-width: 0px) {
+/* @media (min-width: 0px) {
   .main {
     font-family: "SF Pro Display", sans-serif;
     background-color: black;
@@ -249,7 +222,7 @@
     border-radius: 16px;
     padding: 24px;
   }
-}
+} */
 
 /* scroll bar */
 ::-webkit-scrollbar {

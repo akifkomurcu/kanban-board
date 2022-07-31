@@ -3,6 +3,9 @@ import style from "./style.module.css";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useParams } from "react-router-dom";
 import { AddKanbanCard } from "../../api";
+import { useQuery, useQueryClient } from "react-query";
+import { FetchKanbanID } from "../../api";
+import "antd/dist/antd.css";
 import {
   Modal,
   ModalOverlay,
@@ -14,12 +17,20 @@ import {
   Button,
   useDisclosure,
   Input,
+  Box,
 } from "@chakra-ui/react";
+import { Popconfirm } from "antd";
 import { v4 as uuid } from "uuid";
-function Section({ data }) {
+function Section() {
+  const queryClient = useQueryClient();
+  const { id } = useParams();
+  const { isLoading, isError, data } = useQuery(["kanbanID", id], () =>
+    FetchKanbanID(id)
+  );
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const NewID = uuid();
-  const { id } = useParams();
+
   const [title, setTitle] = useState("");
   const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
@@ -28,7 +39,6 @@ function Section({ data }) {
 
   const HandleSubmit = async () => {
     //yeni value'ları obje haline getirdim
-
     const CardValues = data.cards.push({
       id: NewID,
       title: title,
@@ -57,7 +67,8 @@ function Section({ data }) {
       cards: CardValues,
     };
     await AddKanbanCard(data.id, values);
-    document.location.reload(true);
+    queryClient.invalidateQueries("kanbanID", data.id);
+    //bu id sayesinde location.reload olmadan refetch işlemi yapılıyor arkada.
   };
 
   const dragStart = (e, cardID) => {
@@ -74,12 +85,19 @@ function Section({ data }) {
     //kartı buldum
     let Newcard = data.cards.find((card) => card.id === dragging);
     //bölümünü değiştirdim
-
     Newcard.section = part;
     //pushladım
     await AddKanbanCard(id, data);
-    document.location.reload(true);
+    //bu id sayesinde location.reload olmadan refetch işlemi yapılıyor arkada.
+    queryClient.invalidateQueries("kanbanID", data.id);
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <>
       <Modal
@@ -90,7 +108,7 @@ function Section({ data }) {
       >
         <ModalOverlay />
         <ModalContent background="#262626" color="white ">
-          <ModalHeader>Add a new card</ModalHeader>
+          <ModalHeader>Add a new {section}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Input
@@ -102,6 +120,16 @@ function Section({ data }) {
               placeholder="content"
               onChange={(e) => setContent(e.target.value)}
             />
+            <Box>
+              <Input
+                type="color"
+                className="colorpicker"
+                border="none"
+                mt={2}
+                width="80px"
+                padding={0}
+              />
+            </Box>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
@@ -114,6 +142,7 @@ function Section({ data }) {
         </ModalContent>
       </Modal>
       {parts.map((part, index) => (
+        // belirlediğim 4 section'ı burada dönmeye başlıyorum.
         <div
           key={index}
           className={style.section}
@@ -128,6 +157,7 @@ function Section({ data }) {
           </div>
           {data.cards.map(
             (card, index) =>
+              // eğer kart bölümüyle yukarda döndüğüm bölüm eşleşirse kartı içine yazmış oluyor. Tek kod bloğuyla 4 section yazmış oluyorum.
               card?.section === part && (
                 <div
                   key={index}
@@ -138,14 +168,14 @@ function Section({ data }) {
                   <div className={style.cardContent}>
                     <div className={style.title}>
                       {card.title}
-                      <button value={part} onClick={() => DeleteCards(card.id)}>
-                        <CloseIcon
-                          cursor="pointer"
-                          w={3}
-                          h={3}
-                          onClick={() => DeleteCards(card.id)}
-                        />
-                      </button>
+                      <Popconfirm
+                        width="200px"
+                        title="Are you sure want to delete this card?"
+                        // silme işlemi için confirm dialog'ını açıyorum
+                        onConfirm={() => DeleteCards(card.id)}
+                      >
+                        <CloseIcon cursor="pointer" w={3} h={3} />
+                      </Popconfirm>
                     </div>
                     <div className={style.content}>{card.content}</div>
                   </div>
