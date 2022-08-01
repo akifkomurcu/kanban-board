@@ -1,23 +1,26 @@
 {
   "myKanbans": [
     {
-      "name": "birinci",
+      "name": "asdasd",
+      "user": "mehmet",
+      "color": "#ba3636",
+      "cards": [],
+      "id": 8
+    },
+    {
+      "name": "Akif",
+      "user": "akif",
+      "color": "#1a8e52",
       "cards": [
-        1,
         {
-          "id": "591e74a5-cccd-4815-82b4-6856b18d161a",
+          "id": "f3d5bc6b-af4e-4027-8067-35e05c4b83de",
           "title": "asd",
-          "content": "asdasdd",
-          "section": "Backlog"
-        },
-        {
-          "id": "288bd394-6295-43f5-81a2-e2d7f4aa3693",
-          "title": "adasd",
-          "content": "sdadad",
-          "section": "Backlog"
+          "content": "asdasd",
+          "section": "Backlog",
+          "color": "#252ab1"
         }
       ],
-      "id": 1
+      "id": 9
     }
   ]
 }

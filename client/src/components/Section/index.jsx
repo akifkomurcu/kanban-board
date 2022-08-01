@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./style.module.css";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useParams } from "react-router-dom";
-import { AddKanbanCard } from "../../api";
+import { AddKanbanCard, FetchKanbanID } from "../../api";
 import { useQuery, useQueryClient } from "react-query";
-import { FetchKanbanID } from "../../api";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import {
   Modal,
   ModalOverlay,
@@ -30,13 +29,26 @@ function Section() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const NewID = uuid();
-
+  const [lastSeen, setLastSeen] = useState([]);
   const [title, setTitle] = useState("");
   const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
+  const [color, setColor] = useState("#6a6dcd");
   const [parts] = useState(["Backlog", "To do", "Inprogress", "Done"]);
   const [section, setSection] = useState("");
 
+  useEffect(() => {
+    if (data && !lastSeen.find((item) => item === data.id)) {
+      lastSeen.push(localStorage.getItem("lastSeen"), data.id);
+      // if (lastSeen.length === 3) {
+      //   lastSeen.shift();
+      // }
+      console.log("last seen", lastSeen);
+    }
+    //
+  }, []);
+
+  // yeni kart ekleme kodu başlangıç
   const HandleSubmit = async () => {
     //yeni value'ları obje haline getirdim
     const CardValues = data.cards.push({
@@ -44,33 +56,43 @@ function Section() {
       title: title,
       content: content,
       section: section,
+      color: color,
     });
     //pushlanacak datayı eskilerini koruyarak hazırladım
     const values = {
       name: data.name,
+      user: data.user,
       cards: [...data.cards, CardValues],
     };
 
+    //db'ye data pushlama
+    if (title !== "" && content !== "") {
+      await AddKanbanCard(id, values);
+    }
     onClose();
     setTitle("");
     setContent("");
-
-    //db'ye data pushlama
-    await AddKanbanCard(id, values);
+    setColor("#6a6dcd");
   };
+  // yeni kart ekleme kodu bitiş
+
+  // kart silme kodu başlangıç
 
   const DeleteCards = async (id) => {
     const CardValues = data.cards.filter((card) => card.id !== id);
 
     const values = {
       name: data.name,
+      user: data.user,
       cards: CardValues,
     };
     await AddKanbanCard(data.id, values);
     queryClient.invalidateQueries("kanbanID", data.id);
-    //bu id sayesinde location.reload olmadan refetch işlemi yapılıyor arkada.
+    //bu id sayesinde location.reload olmadan arkada refetch işlemi yapılıyor. Silinen veri anında ekrandan kaldırılmış oluyor.
   };
+  // kart silme kodu bitiş
 
+  //sürükle bırak fonksiyonları başlangıç
   const dragStart = (e, cardID) => {
     setDragging(cardID);
   };
@@ -78,10 +100,6 @@ function Section() {
     e.preventDefault();
   };
   const dragDropped = async (e, part) => {
-    if (part !== section) {
-      console.log("part", part, "section", section);
-    }
-
     //kartı buldum
     let Newcard = data.cards.find((card) => card.id === dragging);
     //bölümünü değiştirdim
@@ -91,6 +109,7 @@ function Section() {
     //bu id sayesinde location.reload olmadan refetch işlemi yapılıyor arkada.
     queryClient.invalidateQueries("kanbanID", data.id);
   };
+  //sürükle bırak fonksiyonları bitiş
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -126,8 +145,10 @@ function Section() {
                 className="colorpicker"
                 border="none"
                 mt={2}
+                value={color}
                 width="80px"
                 padding={0}
+                onChange={(e) => setColor(e.target.value)}
               />
             </Box>
           </ModalBody>
@@ -157,9 +178,14 @@ function Section() {
           </div>
           {data.cards.map(
             (card, index) =>
-              // eğer kart bölümüyle yukarda döndüğüm bölüm eşleşirse kartı içine yazmış oluyor. Tek kod bloğuyla 4 section yazmış oluyorum.
+              // eğer kartın bölümüyle yukarda döndüğüm bölüm eşleşirse kartı içine yazmış oluyor. Tek kod bloğuyla 4 section yazmış oluyorum.
               card?.section === part && (
                 <div
+                  style={
+                    card.color
+                      ? { background: card.color }
+                      : { background: color }
+                  }
                   key={index}
                   className={style.card}
                   draggable

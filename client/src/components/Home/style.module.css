@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: unset;
+  list-style-type: 0;
 }
 .kanbanTitle {
   padding: 20px;
@@ -15,30 +15,88 @@
 }
 .main {
   width: 100%;
-
   display: grid;
   grid:
     "leftside rightside" 1fr
     / 1fr 1.5fr;
-  gap: 2px;
+
   height: 100vh;
 }
 .leftside {
   grid-area: leftside;
-  background-color: #262626;
+  background-color: #000000;
+
+  width: 100%;
+
+  display: grid;
+  grid:
+    "lastsaw welcome" 1fr
+    / 1fr 5fr;
+}
+.lastSaw {
+  border-left: none;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.items {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Welcome {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.InputArea {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 40%;
+
+  margin: 0 auto;
+  border-radius: 20%;
+}
+
+.InputArea input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 .rightside {
   grid-area: rightside;
-  background-color: #16184e;
+  width: 100%;
+  background-color: #000000;
+  color: white;
 }
-
+.heading {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.MyKanbans {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1px;
+  row-gap: 1px;
+  width: min-content;
+}
 .section {
   overflow-y: scroll;
   text-align: left;
   height: min-content;
   max-height: 696px;
   width: max-content;
-  background-color: #262626;
+  background-color: #000000;
   color: white;
   border-radius: 16px;
   padding: 24px;
@@ -48,13 +106,17 @@
 }
 
 .card {
-  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
   height: auto;
-  background-color: #6a6dcd;
   color: white;
   border-radius: 8px;
   padding: 24px;
   gap: 8px;
+  margin: 15px;
+  align-items: center;
 }
 
 /* @media (min-width: 0px) {
@@ -66,12 +128,7 @@
     text-align: center;
     display: list-item;
   }
-  .list {
-    display: list-item;
-    height: max-content;
-    width: max-content;
-    margin: 0 auto;
-  }
+ 
   .section {
     overflow: auto;
     text-align: left;
@@ -81,32 +138,7 @@
     color: white;
     border-radius: 16px;
   }
-  .todo {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-  }
-  .inprogress {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-  }
-  .done {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
+us: 16px;
   }
 }
 @media (min-width: 820px) {
@@ -118,13 +150,7 @@
     text-align: center;
     display: list-item;
   }
-  .list {
-    display: grid;
-    grid-template-columns: auto auto;
-    height: max-content;
-    width: max-content;
-    margin: 0 auto;
-  }
+
   .section {
     overflow: auto;
     text-align: left;
@@ -134,33 +160,7 @@
     color: white;
     border-radius: 16px;
   }
-  .todo {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-  }
-  .inprogress {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-  }
-  .done {
-    overflow: auto;
-    text-align: left;
-    height: max-content;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-  }
+
 }
 @media (min-width: 1700px) {
   .main {
@@ -171,12 +171,7 @@
     text-align: center;
     display: flex;
   }
-  .list {
-    width: 100%;
-    height: 696px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+
   }
   .section {
     overflow: auto;
@@ -189,39 +184,7 @@
     border-radius: 16px;
     padding: 24px;
   }
-  .inprogress {
-    overflow: auto;
-    text-align: left;
-    height: min-content;
-    max-height: 696px;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-    padding: 24px;
-  }
-  .todo {
-    overflow: auto;
-    text-align: left;
-    height: min-content;
-    max-height: 696px;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-    padding: 24px;
-  }
-  .done {
-    overflow: auto;
-    text-align: left;
-    height: min-content;
-    max-height: 696px;
-    width: max-content;
-    background-color: #262626;
-    color: white;
-    border-radius: 16px;
-    padding: 24px;
-  }
+
 } */
 
 /* scroll bar */
