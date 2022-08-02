@@ -9,7 +9,7 @@
           "id": "f3d5bc6b-af4e-4027-8067-35e05c4b83de",
           "title": "asd",
           "content": "asdasd",
-          "section": "To do",
+          "section": "Inprogress",
           "color": "#252ab1"
         },
         {
@@ -23,25 +23,11 @@
       "id": 9
     },
     {
-      "name": "akif",
+      "name": "sdfsdfsdf",
       "user": "mehmet",
-      "color": "#742a2a",
+      "color": "#d64343",
       "cards": [],
       "id": 10
-    },
-    {
-      "name": "asdads",
-      "user": "mehmet",
-      "color": "#9f2323",
-      "cards": [],
-      "id": 11
-    },
-    {
-      "name": "axasxx",
-      "user": "mehmet",
-      "color": "#5a668c",
-      "cards": [],
-      "id": 12
     }
   ]
 }
