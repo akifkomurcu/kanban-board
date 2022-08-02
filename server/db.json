@@ -1,13 +1,6 @@
 {
   "myKanbans": [
     {
-      "name": "asdasd",
-      "user": "mehmet",
-      "color": "#ba3636",
-      "cards": [],
-      "id": 8
-    },
-    {
       "name": "Akif",
       "user": "akif",
       "color": "#1a8e52",
@@ -16,11 +9,39 @@
           "id": "f3d5bc6b-af4e-4027-8067-35e05c4b83de",
           "title": "asd",
           "content": "asdasd",
-          "section": "Backlog",
+          "section": "To do",
           "color": "#252ab1"
+        },
+        {
+          "id": "fa1819b1-03db-4150-9e53-bce8c339d29a",
+          "title": "asdkasld",
+          "content": "asdşkaşsdad",
+          "section": "To do",
+          "color": "#cb63d9"
         }
       ],
       "id": 9
+    },
+    {
+      "name": "akif",
+      "user": "mehmet",
+      "color": "#742a2a",
+      "cards": [],
+      "id": 10
+    },
+    {
+      "name": "asdads",
+      "user": "mehmet",
+      "color": "#9f2323",
+      "cards": [],
+      "id": 11
+    },
+    {
+      "name": "axasxx",
+      "user": "mehmet",
+      "color": "#5a668c",
+      "cards": [],
+      "id": 12
     }
   ]
 }

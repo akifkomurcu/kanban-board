@@ -29,7 +29,6 @@ function Section() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const NewID = uuid();
-  const [lastSeen, setLastSeen] = useState([]);
   const [title, setTitle] = useState("");
   const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
@@ -37,16 +36,16 @@ function Section() {
   const [parts] = useState(["Backlog", "To do", "Inprogress", "Done"]);
   const [section, setSection] = useState("");
 
-  useEffect(() => {
-    if (data && !lastSeen.find((item) => item === data.id)) {
-      lastSeen.push(localStorage.getItem("lastSeen"), data.id);
-      // if (lastSeen.length === 3) {
-      //   lastSeen.shift();
-      // }
-      console.log("last seen", lastSeen);
+  const lastSeen = [];
+  if (data) {
+    if (localStorage.getItem("lastSeen")) {
+      lastSeen.push(localStorage.getItem("lastSeen"));
     }
-    //
-  }, []);
+
+    // lastSeen.push(data.id);
+    // console.log("last seen", lastSeen);
+    // localStorage.setItem("lastSeen", lastSeen);
+  }
 
   // yeni kart ekleme kodu başlangıç
   const HandleSubmit = async () => {
