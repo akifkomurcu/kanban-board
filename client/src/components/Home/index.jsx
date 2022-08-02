@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import style from "./style.module.css";
 import { useQuery, useQueryClient } from "react-query";
 import { FetchAllKanbans, AddKanban, DeleteKanban } from "../../api";
@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import "antd/dist/antd.min.css";
 import { Popconfirm } from "antd";
+import LastseenContext from "../Lastseen";
+
 import {
   Modal,
   ModalOverlay,
@@ -32,6 +34,10 @@ function Home() {
       setUser(localStorage.getItem("user"));
     }
   }, []);
+
+  const { lastSeen, setLastseen } = useContext(LastseenContext);
+
+  console.log("lastSeen", lastSeen);
   const handleSubmit = () => {
     if (username.current.value !== "") {
       setUser(username.current.value);
@@ -61,7 +67,6 @@ function Home() {
     setName("");
     setColor("");
   };
-
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -112,28 +117,25 @@ function Home() {
       </Modal>
       <div className={style.leftside}>
         <div className={style.lastSaw}>
-          {data.map(
-            (kanban, index) =>
-              kanban.user === user && (
-                <>
-                  <div key={index}>
-                    Last seen
-                    <Link to={`/content/${kanban.id}`}>
-                      <div
-                        className={style.items}
-                        key={kanban.id}
-                        style={{ background: kanban.color }}
-                      >
-                        <div>
-                          {kanban.name}
-                          <br />
-                        </div>
-                      </div>
-                    </Link>
+          {lastSeen.map((lastseen, index) => (
+            <>
+              <div key={index}>
+                Last seen
+                <Link to={`/content/${lastseen}`}>
+                  <div
+                    className={style.items}
+                    key={lastseen}
+                    // style={{ background: kanban.color }}
+                  >
+                    <div>
+                      {lastseen}
+                      <br />
+                    </div>
                   </div>
-                </>
-              )
-          )}
+                </Link>
+              </div>
+            </>
+          ))}
         </div>
         <div className={style.Welcome}>
           {!user && (

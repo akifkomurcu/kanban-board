@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import LastseenContext from "../Lastseen";
 import style from "./style.module.css";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { useParams } from "react-router-dom";
@@ -26,10 +27,9 @@ function Section() {
   const { isLoading, isError, data } = useQuery(["kanbanID", id], () =>
     FetchKanbanID(id)
   );
-
+  const { lastSeen, setLastseen } = useContext(LastseenContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const NewID = uuid();
-  const [lastSeen, setLastSeen] = useState([]);
   const [title, setTitle] = useState("");
   const [dragging, setDragging] = useState("");
   const [content, setContent] = useState("");
@@ -38,15 +38,14 @@ function Section() {
   const [section, setSection] = useState("");
 
   useEffect(() => {
-    if (data && !lastSeen.find((item) => item === data.id)) {
-      lastSeen.push(localStorage.getItem("lastSeen"), data.id);
-      // if (lastSeen.length === 3) {
-      //   lastSeen.shift();
-      // }
-      console.log("last seen", lastSeen);
+    if (data) {
+      lastSeen.find((item) =>
+        item === data.id
+          ? console.log("item eskiden vardı")
+          : lastSeen.push(data.id)
+      );
     }
-    //
-  }, []);
+  }, [data]);
 
   // yeni kart ekleme kodu başlangıç
   const HandleSubmit = async () => {

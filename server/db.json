@@ -16,11 +16,18 @@
           "id": "f3d5bc6b-af4e-4027-8067-35e05c4b83de",
           "title": "asd",
           "content": "asdasd",
-          "section": "Backlog",
+          "section": "Inprogress",
           "color": "#252ab1"
         }
       ],
       "id": 9
+    },
+    {
+      "name": "sdfsdfsdf",
+      "user": "mehmet",
+      "color": "#d64343",
+      "cards": [],
+      "id": 10
     }
   ]
 }

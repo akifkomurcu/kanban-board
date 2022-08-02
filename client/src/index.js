@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
+import { LastseenProvider } from "./components/Lastseen";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -20,7 +20,9 @@ root.render(
     <BrowserRouter>
       <ChakraProvider>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <LastseenProvider>
+            <App />
+          </LastseenProvider>
         </QueryClientProvider>
       </ChakraProvider>
     </BrowserRouter>
