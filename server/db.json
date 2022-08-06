@@ -1,5 +1,11 @@
 {
   "myKanbans": [
-  
+    {
+      "name": "asdasdd",
+      "user": "akif",
+      "color": "#6a6dcd",
+      "cards": [],
+      "id": 1
+    }
   ]
 }

@@ -187,7 +187,6 @@ function Home() {
                   type="submit"
                   onClick={() => Logout()}
                   style={{
-                    width: "70%",
                     margin: "10px",
                     // display: "flex",
                     // justifyContent: "center",
