@@ -1,3 +1,4 @@
+//component'ın amacı kullanıcıya 4 section oluşturmaktır. Aynı zamanda bu sayfada kullanıcı kart ekleyebilir & silebilir. Son görülenler için LastSeen context'ine burada değer atanır.
 import { useState, useEffect, useContext } from "react";
 import LastseenContext from "../Lastseen";
 import style from "./style.module.css";
@@ -37,36 +38,58 @@ function Section() {
   const [parts] = useState(["Backlog", "To do", "Inprogress", "Done"]);
   const [section, setSection] = useState("");
 
+  const addSomeLocalData = () => {
+    return setLastseen([
+      ...lastSeen,
+      {
+        id: data.id,
+        user: data.user,
+        color: data.color,
+        name: data.name,
+      },
+    ]);
+  };
+
   useEffect(() => {
-    if (data) {
-      lastSeen.find((item) =>
-        item === data.id
-          ? console.log("item eskiden vardı")
-          : lastSeen.push(data.id)
-      );
+    //Son görülen kartları gösterme kodu.ilk eklemede çalışacak.
+    if (data && lastSeen.length === 0) {
+      addSomeLocalData();
+      //daha önce aynı data eklenmemişse çalışacak
+    } else if (data && !lastSeen.find((item) => item.id === data.id)) {
+      addSomeLocalData();
+    }
+
+    if (lastSeen.length === 3) {
+      lastSeen.shift();
     }
   }, [data]);
 
-  // yeni kart ekleme kodu başlangıç
-  const HandleSubmit = async () => {
-    //yeni value'ları obje haline getirdim
-    const CardValues = data.cards.push({
+  const CardValues = () => {
+    return data.cards.push({
       id: NewID,
       title: title,
       content: content,
       section: section,
       color: color,
     });
-    //pushlanacak datayı eskilerini koruyarak hazırladım
-    const values = {
+  };
+
+  const organizedCardValues = () => {
+    return {
       name: data.name,
       user: data.user,
       cards: [...data.cards, CardValues],
     };
-
+  };
+  // yeni kart ekleme kodu başlangıç
+  const HandleSubmit = async () => {
+    //yeni value'ları obje haline getirdim
+    CardValues();
+    //pushlanacak datayı eskilerini koruyarak hazırladım
+    organizedCardValues();
     //db'ye data pushlama
     if (title !== "" && content !== "") {
-      await AddKanbanCard(id, values);
+      await AddKanbanCard(id, organizedCardValues());
     }
     onClose();
     setTitle("");

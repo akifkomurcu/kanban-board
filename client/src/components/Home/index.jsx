@@ -29,29 +29,37 @@ function Home() {
   const { isLoading, isError, data } = useQuery("allkanbans", FetchAllKanbans);
   const username = useRef();
   const queryClient = useQueryClient();
+  const { lastSeen, setLastseen } = useContext(LastseenContext);
+
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setUser(localStorage.getItem("user"));
     }
+    //her sayfa yenilendiğinde lastSeen context'i değerini kaybedecek bu nedenle değerini kaybettiği zaman localStorage'ı sıfırlamasını önledim
+    if (lastSeen.length !== 0) {
+      localStorage.setItem("lastseen", JSON.stringify(lastSeen));
+    }
+    setColor("#6a6dcd");
   }, []);
 
-  const { lastSeen, setLastseen } = useContext(LastseenContext);
-
-  console.log("lastSeen", lastSeen);
   const handleSubmit = () => {
     if (username.current.value !== "") {
       setUser(username.current.value);
       localStorage.setItem("user", username.current.value);
     }
   };
+  //kullanıcı çıkış işlemi
   const Logout = () => {
     setUser("");
     localStorage.removeItem("user");
+    setLastseen("");
+    localStorage.removeItem("lastseen");
   };
   const DeleteKanbanBoard = async (id) => {
     await DeleteKanban(id);
     queryClient.invalidateQueries("allkanbans");
   };
+  console.log(lastSeen);
   const NewKanban = async () => {
     const values = {
       name: name,
@@ -65,7 +73,7 @@ function Home() {
     }
     onClose();
     setName("");
-    setColor("");
+    setColor("#6a6dcd");
   };
   if (isLoading) {
     return <div>Loading</div>;
@@ -75,7 +83,10 @@ function Home() {
   }
 
   return (
-    <div className={style.main}>
+    <div
+      className={style.main}
+      style={!user ? { height: "100vh", width: "100%" } : { height: "100vh" }}
+    >
       <Modal
         isCentered
         onClose={onClose}
@@ -84,7 +95,7 @@ function Home() {
       >
         <ModalOverlay />
         <ModalContent background="#262626" color="white ">
-          <ModalHeader>Add a new Kanban</ModalHeader>
+          <ModalHeader>Add a new Kanban Board</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Input
@@ -117,25 +128,30 @@ function Home() {
       </Modal>
       <div className={style.leftside}>
         <div className={style.lastSaw}>
-          {lastSeen.map((lastseen, index) => (
-            <>
-              <div key={index}>
-                Last seen
-                <Link to={`/content/${lastseen}`}>
-                  <div
-                    className={style.items}
-                    key={lastseen}
-                    // style={{ background: kanban.color }}
-                  >
-                    <div>
-                      {lastseen}
-                      <br />
-                    </div>
-                  </div>
-                </Link>
+          {user && JSON.parse(localStorage.getItem("lastseen")) && (
+            <div className={style.itemsArea}>
+              <div> Last seen</div>
+              <div className={style.ItemsSection}>
+                {JSON.parse(localStorage.getItem("lastseen")).map(
+                  (lastseen, index) => (
+                    <Link to={`/content/${lastseen.id}`} key={index}>
+                      <div
+                        className={style.items}
+                        style={{
+                          background: lastseen.color,
+                        }}
+                      >
+                        <div>
+                          {lastseen.name}
+                          <br />
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                )}
               </div>
-            </>
-          ))}
+            </div>
+          )}
         </div>
         <div className={style.Welcome}>
           {!user && (
@@ -166,16 +182,16 @@ function Home() {
           {user && (
             <div className={style.InputArea}>
               <div className={style.Inputs}>
-                <div style={{ fontSize: "50px", color: "white" }}>
-                  Welcome {user},
-                </div>
+                <div className={style.InputHeader}>Welcome {user},</div>
                 <Button
                   type="submit"
                   onClick={() => Logout()}
                   style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    width: "70%",
+                    margin: "10px",
+                    // display: "flex",
+                    // justifyContent: "center",
+                    // alignItems: "center",
                   }}
                 >
                   Logout
@@ -187,24 +203,19 @@ function Home() {
       </div>
       <div className={style.rightside}>
         {user && (
-          <div
-            className={style.heading}
-            style={{
-              fontSize: "50px",
-              display: "flex",
-              alignItems: "center",
-              width: "315px",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className={style.heading}>
             My Kanbans
-            <AddIcon w={6} h={6} onClick={onOpen} cursor="pointer" />
+            <AddIcon
+              onClick={onOpen}
+              cursor="pointer"
+              className={style.AddIcon}
+            />
           </div>
         )}
-        {data.map(
-          (kanban, index) =>
-            kanban.user === user && (
-              <>
+        <div className={style.Kanbans}>
+          {data.map(
+            (kanban, index) =>
+              kanban.user === user && (
                 <div key={index} className={style.MyKanbans}>
                   <div
                     className={style.card}
@@ -221,13 +232,18 @@ function Home() {
                       // silme işlemi için confirm dialog'ını açıyorum
                       onConfirm={() => DeleteKanbanBoard(kanban.id)}
                     >
-                      <CloseIcon cursor="pointer" w={3} h={3} />
+                      <CloseIcon
+                        cursor="pointer"
+                        w={3}
+                        h={3}
+                        className={style.CloseIcon}
+                      />
                     </Popconfirm>
                   </div>
                 </div>
-              </>
-            )
-        )}
+              )
+          )}
+        </div>
       </div>
     </div>
   );

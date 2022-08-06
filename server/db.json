@@ -1,33 +1,5 @@
 {
   "myKanbans": [
-    {
-      "name": "Akif",
-      "user": "akif",
-      "color": "#1a8e52",
-      "cards": [
-        {
-          "id": "f3d5bc6b-af4e-4027-8067-35e05c4b83de",
-          "title": "asd",
-          "content": "asdasd",
-          "section": "Inprogress",
-          "color": "#252ab1"
-        },
-        {
-          "id": "fa1819b1-03db-4150-9e53-bce8c339d29a",
-          "title": "asdkasld",
-          "content": "asdşkaşsdad",
-          "section": "To do",
-          "color": "#cb63d9"
-        }
-      ],
-      "id": 9
-    },
-    {
-      "name": "sdfsdfsdf",
-      "user": "mehmet",
-      "color": "#d64343",
-      "cards": [],
-      "id": 10
-    }
+  
   ]
 }
