@@ -1,0 +1,67 @@
+.main {
+  padding: 25px;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+.InputArea {
+  display: flex;
+  width: max-content;
+}
+.Inputs {
+  display: flex;
+}
+.InputHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+}
+.logo {
+  margin-bottom: 5px;
+  font-size: large;
+  font-family: "Courier New", Courier, monospace;
+}
+@media (min-width: 320px) {
+  .main {
+    padding: 25px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding: 25px;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    flex-direction: unset;
+  }
+  .InputArea {
+    display: flex;
+    width: max-content;
+  }
+  .Inputs {
+    display: flex;
+  }
+  .InputHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+  }
+  .logo {
+    font-size: large;
+    font-family: "Courier New", Courier, monospace;
+  }
+}

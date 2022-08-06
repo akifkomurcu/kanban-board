@@ -1,10 +1,18 @@
 {
   "myKanbans": [
     {
-      "name": "asdasdd",
+      "name": "ilk Kanban",
       "user": "akif",
-      "color": "#6a6dcd",
-      "cards": [],
+      "color": "#433232",
+      "cards": [
+        {
+          "id": "2841b5c7-4387-47b4-b140-457b00bdd08e",
+          "title": "title",
+          "content": "content",
+          "section": "Backlog",
+          "color": "#0f102e"
+        }
+      ],
       "id": 1
     }
   ]
