@@ -51,10 +51,10 @@ function Section() {
   };
 
   useEffect(() => {
-    //Son görülen kartları gösterme kodu.ilk eklemede çalışacak.
+    //Son görülen kartları gösterme kodu. İlk eklemede çalışacak.
     if (data && lastSeen.length === 0) {
       addSomeLocalData();
-      //daha önce aynı data eklenmemişse çalışacak
+      //daha önce aynı data eklenmemişse çalışacak.
     } else if (data && !lastSeen.find((item) => item.id === data.id)) {
       addSomeLocalData();
     }
@@ -118,9 +118,29 @@ function Section() {
   const dragStart = (e, cardID) => {
     setDragging(cardID);
   };
+  const sortKeeping = (e, durankart) => {
+    //tuttuğum kart
+    const cardHolding = data.cards.findIndex((card) => card.id === dragging);
+    //duran kart
+    const cardForReplace = data.cards.findIndex(
+      (card) => card.id === durankart
+    );
+
+    //tuttuğum kart eğer sürükleyeceğim karttan aşağıdaysa bu kod çalışır
+    if (cardHolding > cardForReplace) {
+      data.cards.splice(cardForReplace, 0, data.cards[cardHolding]);
+      data.cards.splice(cardHolding + 1, 1);
+    }
+    //tuttuğum kart eğer sürükleyeceğim karttan yukarıdaysa bu kod çalışır
+    else if (cardHolding < cardForReplace) {
+      data.cards.splice(cardForReplace + 1, 0, data.cards[cardHolding]);
+      data.cards.splice(cardHolding, 1);
+    }
+  };
   const dragKeeping = (e, dragging) => {
     e.preventDefault();
   };
+
   const dragDropped = async (e, part) => {
     //kartı buldum
     let Newcard = data.cards.find((card) => card.id === dragging);
@@ -211,10 +231,12 @@ function Section() {
                   key={index}
                   className={style.card}
                   draggable
+                  onDragOver={(e) => sortKeeping(e, card.id)}
                   onDragStart={(e) => dragStart(e, card.id)}
                 >
                   <div className={style.cardContent}>
                     <div className={style.title}>
+                      {card.index}
                       {card.title}
                       <Popconfirm
                         width="200px"

@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: unset;
+  list-style: none;
 }
 .kanbanTitle {
   padding: 20px;
@@ -96,13 +96,13 @@
     height: max-content;
     text-align: center;
     display: list-item;
-    list-style: unset;
+    list-style: none;
   }
   .list {
     font-size: small;
     height: auto;
     display: list-item;
-    list-style: unset;
+    list-style: none;
     width: max-content;
     margin: 0 auto;
   }
@@ -138,7 +138,7 @@
     height: 100vh;
     text-align: center;
     display: list-item;
-    list-style: unset;
+    list-style: none;
   }
   .list {
     display: grid;
@@ -167,13 +167,13 @@
     font-family: "SF Pro Display", sans-serif;
     background-color: black;
     width: 100%;
-    height: 100vh;
+    height: min-content;
     text-align: center;
     display: flex;
   }
   .list {
     width: max-content;
-    height: 696px;
+    height: min-content;
     display: flex;
     justify-content: center;
     text-align: center;

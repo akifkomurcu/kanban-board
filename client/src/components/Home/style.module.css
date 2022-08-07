@@ -22,6 +22,7 @@
 }
 .items {
   padding: 5px;
+  width: auto;
   border-radius: 10px;
   margin: 5px;
 }
@@ -111,7 +112,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 168px;
     width: max-content;
     float: left;
     font-size: large;

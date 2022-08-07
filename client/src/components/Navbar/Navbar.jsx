@@ -7,7 +7,7 @@ function Navbar({ user, setUser, color, setColor }) {
     if (localStorage.getItem("user")) {
       setUser(localStorage.getItem("user"));
     }
-    //her sayfa yenilendiğinde lastSeen context'i değerini kaybedecek bu nedenle değerini kaybettiği zaman localStorage'ı sıfırlamasını önledim
+    //her sayfa yenilendiğinde lastSeen context'i değerini kaybedecek, bu nedenle değerini kaybettiği zaman localStorage'ı sıfırlamasını önledim.
     if (lastSeen.length !== 0) {
       localStorage.setItem("lastseen", JSON.stringify(lastSeen));
     }
@@ -64,9 +64,6 @@ function Navbar({ user, setUser, color, setColor }) {
                   colorScheme="blue"
                   style={{
                     margin: "10px",
-                    // display: "flex",
-                    // justifyContent: "center",
-                    // alignItems: "center",
                   }}
                 >
                   Logout

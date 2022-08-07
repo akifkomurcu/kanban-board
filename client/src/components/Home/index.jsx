@@ -108,32 +108,36 @@ function Home() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
+      {/* burada localStorage'a kaydettiğim son ziyaret edilenleri dönüyorum. Fakat herhangi bir sayfayı ziyaret ettikten sonra o sayfayı silersem son görülenlerde kalmaması için bu sayfanın db'de olup olmadığına da bakıyorum. Eğer ziyaret ettikten sonra Board'ı sildiysem son görülenlerden de silinecek. */}
       <div className={style.lastSaw}>
         {user && lastSeen.length !== 0 && <div> Last seen</div>}
         {user && JSON.parse(localStorage.getItem("lastseen")) && (
           <div className={style.itemsArea}>
-            {JSON.parse(localStorage.getItem("lastseen")).map(
-              (lastseen, index) => (
-                <Link to={`/content/${lastseen.id}`} key={index}>
-                  <div
-                    className={style.items}
-                    style={{
-                      background: lastseen.color,
-                    }}
-                  >
-                    <div>
-                      {lastseen.name}
-                      <br />
-                    </div>
-                  </div>
-                </Link>
-              )
+            {JSON.parse(localStorage.getItem("lastseen")).map((lastseen) =>
+              data.map((kanban, index) => {
+                if (lastseen.id === kanban.id) {
+                  return (
+                    <Link to={`/content/${lastseen.id}`} key={index}>
+                      <div
+                        className={style.items}
+                        style={{
+                          background: lastseen.color,
+                        }}
+                      >
+                        <div>
+                          {lastseen.name}
+                          <br />
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                }
+              })
             )}
           </div>
         )}
       </div>
-
+      {/* user varsa board ekleme bölümü bizi karşılıyor */}
       <div className={style.rightside}>
         {user && (
           <div className={style.heading}>
@@ -143,10 +147,12 @@ function Home() {
               cursor="pointer"
               className={style.AddIcon}
               ml={4}
+              w={6}
             />
           </div>
         )}
       </div>
+      {/* kanban board'larımızı burada dönüyorum */}
       <div className={style.Kanbans}>
         {data.map(
           (kanban, index) =>

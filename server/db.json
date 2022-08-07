@@ -1,16 +1,23 @@
 {
   "myKanbans": [
     {
-      "name": "ilk Kanban",
-      "user": "akif",
-      "color": "#433232",
+      "name": "asdasddsa",
+      "user": "mehmet",
+      "color": "#030768",
       "cards": [
         {
-          "id": "2841b5c7-4387-47b4-b140-457b00bdd08e",
-          "title": "title",
-          "content": "content",
-          "section": "Backlog",
-          "color": "#0f102e"
+          "id": "a8c3463a-c923-49b3-ad33-a0502f21d472",
+          "title": "dasda",
+          "content": "dasdad",
+          "section": "To do",
+          "color": "#7e7f95"
+        },
+        {
+          "id": "da46d19b-65db-4018-96be-3c8f8b52540b",
+          "title": "asd",
+          "content": "asdasda",
+          "section": "To do",
+          "color": "#01058e"
         }
       ],
       "id": 1
